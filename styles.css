@@ -23,7 +23,7 @@ body {
 .shelf {
     height: 250px;
     display: flex;
-    gap: 5px;
+    gap: 6px;
 }
 
 .shelf.top-books {
@@ -59,6 +59,41 @@ body {
 }
 
 .book {
-    border: 1px solid black;
+    border: 5px solid black;
     width: 80px;
+}
+
+.shelf.top-books .book:hover {
+    transform: rotate(-10deg) scale(1.1);
+}
+
+.shelf.bottom-books .book:hover {
+    transform: rotate(10deg) scale(1.1);
+}
+
+.shelf.bottom-books .book:nth-child(odd):hover {
+    transform: rotate(8deg) scale(1.1);
+}
+
+.shelf.top-books .book:nth-child(odd):hover {
+    transform: rotate(-8deg) scale(1.1);
+}
+
+
+#addBook {
+    margin-top: 20px;
+    padding: 20px 50px;
+    background-color: #563232;
+    border: 5px solid black;
+    border-radius: 20px;
+    outline: none;
+    color: azure;
+}
+
+#addBook:hover {
+    transform: scale(1.1);
+}
+
+#addBook:active {
+    opacity: .6;
 }
