@@ -40,6 +40,13 @@ body {
     overflow: hidden;
 }
 
+/* Book Slant Effects */
+
+.book {
+    border: 5px solid black;
+    width: 80px;
+}
+
 .shelf.top-books .book {
     transform: rotate(-10deg);
     display: inline-block;
@@ -58,9 +65,11 @@ body {
     transform: rotate(-8deg);
 }
 
-.book {
-    border: 5px solid black;
-    width: 80px;
+
+/* Book Hover Effects */
+
+.book:hover {
+    cursor: pointer;
 }
 
 .shelf.top-books .book:hover {
@@ -79,6 +88,10 @@ body {
     transform: rotate(-8deg) scale(1.1);
 }
 
+
+
+
+/* Button */
 
 #addBook {
     margin-top: 20px;

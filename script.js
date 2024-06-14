@@ -24,14 +24,3 @@ function displayBook() {
 function addBookToLib() {
 
 }
-
-const book1 = new Book("Kopiko", "Black", 245, "Finished");
-
-console.log(book1.info());
-
-
-const book2 = new Book("Merchant of Death", "Frost", 300, "Finished")
-
-console.log(myLibrary);
-
-console.log(myLibrary[1].info());
