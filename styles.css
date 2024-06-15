@@ -110,3 +110,129 @@ body {
 #addBook:active {
     opacity: .6;
 }
+
+/* AddBook Modal */
+
+.modal {
+    border: 5px solid black;
+    width: 300px;
+    height: 400px;
+    padding: 0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.modal > .form-header {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    height: 70px;
+}
+
+.form-header .modal-title {
+    /* border: 1px solid red; */
+    font-size: 30px;
+    align-self: center;
+}
+
+.form-header >.closeModal {
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    position: absolute;
+    margin: 5px;
+    border: 2px solid black;
+    border-radius: 20px;
+    top: 0;
+    right: 0;
+}
+
+.modal > form {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 330px;
+    padding: 15px;
+    font-size: 16px;
+    /* justify-content: center; */
+}
+
+/* .modal > form > div {
+    display: flex;
+} */
+
+.form-label {
+    display: inline-block;
+    font-size: 17px;
+}
+
+.book-title > input,
+.book-author > input {
+    display: block;
+    width: 100%;
+    height: 20px;
+    margin: 0;
+    margin-bottom: 18px;
+    padding-left: 5px;
+    border: 2px solid black;
+    border-radius: 3px;
+    outline: none;
+}
+.book-pages > input {
+    width: 100%;
+    height: 20px;
+    display: block;
+    padding-left: 5px;
+    border: 2px solid black;
+    border-radius: 3px;
+    outline: none;
+}
+
+.book-status {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.book-status > button {
+    margin: 0;
+    font-size: 16px;
+    align-self: center;
+    border: 3px solid black;
+    border-radius: 50px;
+    outline: none;
+}
+
+#bookSubmit {
+    margin: 0;
+    width: 180px;
+    height: 40px;
+    font-size: 16px;
+    align-self: center;
+    margin-top: 40px;
+    border: 3px solid black;
+    border-radius: 50px;
+    outline: none;
+}
+
+form button:hover {
+    transform: scale(1.1);
+}
+
+form button:active {
+    opacity: .7;
+}
+
+.closeModal:hover {
+    transform: scale(1.1);
+}
+
+dialog::backdrop {
+    background-color: grey;
+    opacity: .75;
+    backdrop-filter: blur(10px);
+}
+
