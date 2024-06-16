@@ -20,6 +20,8 @@ h1 {
   font-style: normal;
   margin-bottom: 50px;
   margin-top: 0;
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 h1 > span {
@@ -203,11 +205,13 @@ h1:hover {
 
 .modal {
     border: 5px solid black;
+    background-color: white;
     width: 300px;
     height: 400px;
     padding: 0;
     border-radius: 20px;
     overflow: hidden;
+    z-index: 10;
 }
 
 .modal > .form-header {
@@ -228,7 +232,8 @@ h1:hover {
     align-self: center;
 }
 
-.form-header >.closeModal {
+.closeModal {
+    /* Make it Global for all classes */
     font-weight: bold;
     width: 25px;
     height: 25px;
@@ -308,6 +313,73 @@ h1:hover {
     outline: none;
     font-family: 'Times New Roman', Times, serif;
 }
+
+/* Display Book Info Modal */
+
+.modal.displayBook p {
+    margin: 0;
+    max-width: fit-content;
+    text-align: center;
+    white-space: wrap;
+}
+
+.modal.displayBook {
+    background-color: white; 
+    box-shadow: -20px 15px 5px rgba(0, 0, 0, 0.6); 
+}
+
+.modal.displayBook > #bookInfo {
+    border: 10px solid black;
+    border-style:double;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    margin-top: 35px;
+    height: 330px;
+    justify-content: space-between;
+}
+
+#bookInfo > .bookTitleInfo {
+    border-bottom: 5px solid black;
+    padding-bottom: 25px;
+    margin-top: 20px;
+    font-family: "Alexandria", sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: -1px;
+    line-height: 35px;
+}
+
+#bookInfo > .bookAuthorInfo {
+    justify-self: baseline;
+    font-family: "Alexandria", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.modal.displayBook .bookStatusInfo {
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-family: "Alexandria", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.bookStatusInfo > div {
+    padding: 10px 20px;
+}
+
+
+
+/* Hover Effects */
 
 form button:hover {
     cursor: pointer;
