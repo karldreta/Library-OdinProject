@@ -318,7 +318,6 @@ h1:hover {
 
 .modal.displayBook p {
     margin: 0;
-    max-width: fit-content;
     text-align: center;
     white-space: wrap;
 }
@@ -329,8 +328,7 @@ h1:hover {
 }
 
 .modal.displayBook > #bookInfo {
-    border: 10px solid black;
-    border-style:double;
+    border: 10px double black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -341,7 +339,8 @@ h1:hover {
 }
 
 #bookInfo > .bookTitleInfo {
-    border-bottom: 5px solid black;
+    width: 100%;
+    border-bottom: 3px solid black;
     padding-bottom: 25px;
     margin-top: 20px;
     font-family: "Alexandria", sans-serif;
@@ -377,22 +376,35 @@ h1:hover {
     padding: 10px 20px;
 }
 
+#bookInfo > #withdraw {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 13px;
+    letter-spacing: .95px;
+    padding: 5px;
+    border: 3px solid black;
+    border-radius: 4px;
+    outline: none;
+    font-family: 'Times New Roman', Times, serif;
+}
 
 
 /* Hover Effects */
 
-form button:hover {
+button {
+    background-color: white;
+}
+
+form button:hover, 
+.closeModal:hover,
+#withdraw:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
 
-form button:active {
+form button:active,
+#withdraw:active {
     opacity: .7;
-}
-
-.closeModal:hover {
-    cursor: pointer;
-    transform: scale(1.1);
 }
 
 dialog::backdrop {
@@ -401,3 +413,8 @@ dialog::backdrop {
     backdrop-filter: blur(10px);
 }
 
+.displayBook::backdrop {
+    background-color: transparent;
+    opacity: 0;
+    backdrop-filter: blur(0px);
+}

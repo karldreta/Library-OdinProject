@@ -5,11 +5,20 @@ books.forEach(book => book.addEventListener('click', displayBook));
 const button = document.querySelector('#addBook');
 button.addEventListener('click', addBookToLib);
 const addBookForm = document.querySelector('.book-form-container');
-const modals = document.querySelectorAll('dialog');
+const dialogs = document.querySelectorAll('dialog');
 const closeModalButtons = document.querySelectorAll('.closeModal');
 closeModalButtons.forEach(button => button.addEventListener('click', () => {
-    document.querySelector('.modal').close();
+    const modal = button.closest('.modal');
+        if (modal) {
+            modal.close(); // Close the modal associated with this close button, ie the most recent opened modal.
+        }
 }));
+
+
+// For displaying each book info
+const bookInfo = document.querySelector('#bookInfo');
+const showBookInfo = document.querySelectorAll('.book');
+showBookInfo.forEach(book => book.addEventListener('click', displayBook))
 
 
 const myLibrary = [];
@@ -27,24 +36,28 @@ function Book(title, author, pages, isRead) {
 }
 
 function displayBook() {
-    // This will be a function for displaying the info of a book in a Modal.
+    // A function for displaying the info of a book in a Modal.
+    bookInfo.showModal()
 }
 
 function addBookToLib() {
+     // A function to bring up the form.
     addBookForm.showModal();
 }
 
 
-modals.forEach(modal => {
-    modal.addEventListener("click", e => {
-      const dialogDimensions = modal.getBoundingClientRect();
+// Start Function for when clicking the backdrop of a modal
+
+dialogs.forEach(dialog => {
+    dialog.addEventListener("click", e => {
+      const dialogDimensions = dialog.getBoundingClientRect();
       if (
         e.clientX < dialogDimensions.left ||
         e.clientX > dialogDimensions.right ||
         e.clientY < dialogDimensions.top ||
         e.clientY > dialogDimensions.bottom
       ) {
-        modal.close();
+        dialog.close();
       }
     });
   });

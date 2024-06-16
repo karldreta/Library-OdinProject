@@ -58,7 +58,7 @@
         </div>
     </main>
     <button id="addBook">Book Registration</button>
-    <!-- The Modal -->
+    <!-- Book Registration Modal -->
     <dialog class="modal book-form-container">
         <div class="form-header">
             <div class="modal-title">New Book Entry</div>
@@ -85,15 +85,19 @@
             <button type="submit" formmethod="dialog" id="bookSubmit">Append to Collection</button>
         </form>
     </dialog>
-    <dialog open class="modal displayBook">
+
+
+    <!-- Book Modal Display-->
+    <dialog class="modal displayBook" id="bookInfo">
         <button class="closeModal">&times;</button>
         <div id="bookInfo">
-            <div class="bookTitleInfo"><p>Gödel, Escher, Bach</p></div>
-            <div class="bookAuthorInfo"><p>Douglas Hofstadter</p></div>
+            <div class="bookTitleInfo"><p>The Lessons of History</p></div>
+            <div class="bookAuthorInfo"><p>Will and Ariel Durant</p></div>
             <div class="bookStatusInfo">
                 <div class="bookPageCountInfo"><p>400 Pages</p></div>
-                <div class="bookReadStatusInfo"><p>Unread</p></div>
+                <div class="bookReadStatusInfo"><p>Read</p></div>
             </div>
+            <button id="withdraw">Withdraw</button>
         </div>
     </dialog>
 </body>
