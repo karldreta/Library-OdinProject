@@ -30,14 +30,33 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
     this.info = function() { return `${this.title} by ${this.author} has ${this.pages} pages, ${this.isRead}.`;
     }
-    // Add a finished reading date()
+    // Add a finished reading date()?
 
     myLibrary.push(this);
 }
 
 function displayBook() {
     // A function for displaying the info of a book in a Modal.
-    bookInfo.showModal()
+
+    // Get the references of the books
+    const bookTitleInfo = document.querySelector('.bookTitleInfo p');
+    const bookAuthorInfo = document.querySelector('.bookAuthorInfo p');
+    const bookPageCountInfo = document.querySelector('.bookPageCountInfo p');
+    const bookReadStatusInfo = document.querySelector('.bookReadStatusInfo p');
+
+    // Now, get the book itself
+
+    const bookTitle = this.querySelector(".spine-title p").textContent;
+    const bookAuthor = this.querySelector(".spine-author p").textContent;
+
+    // Then, dynamically change the info based on the clicked div ("this").
+
+    bookTitleInfo.textContent = bookTitle;
+    bookAuthorInfo.textContent = bookAuthor;
+
+
+    // Call the modal
+    bookInfo.showModal();
 }
 
 function addBookToLib() {
