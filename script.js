@@ -41,6 +41,7 @@ form.addEventListener("submit", e => {
   // Need to validate first, but we'll do that later.
   validateInputs();
 
+
   console.log(toggleReadStatus.checked);
   // Create New Book
 });
@@ -84,14 +85,12 @@ function validateInputs() {
 function displayError(element, message) {
   const inputContainer = element.parentElement;
   const showEffect = inputContainer.querySelector('.showEffect');
-
   showEffect.textContent = `*${message}`;
 }
 
 function displaySuccess(element) {
   const inputContainer = element.parentElement;
   const showEffect = inputContainer.querySelector('.showEffect');
-
   showEffect.textContent = "";
 }
 
@@ -104,113 +103,43 @@ function Book(title, author, pages, isRead) {
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
-    this.info = function() { return `${this.title} by ${this.author} has ${this.pages} pages, ${this.isRead}.`;
-    }
-    // Push to the array
-    myLibrary.push(this);
+}
+
+function addBookToLib(title, author, pageCount, readStatus) {
+  const newBook = new Book(title, author, pageCount, readStatus);
+  myLibrary.push(newBook); // Add the new book to the array
 }
 
 // The Books
-
-const book0 = new Book(
-  "The Republic",
-  "Plato",
-  480,
-  "Read",
-)
-
-const book1 = new Book(
-  "1984",
-  "George Orwell",
-  328,
-  "Read",
-)
-
-const book2 = new Book(
-  "Animal Farm",
-  "George Orwell",
-  92,
-  "Read",
-)
-
-const book3 = new Book(
-  "Brave New World",
-  "Aldous Huxley",
-  311,
-  "Read",
-)
-
-const book4 = new Book(
-  "The Prince",
-  "Niccolò Machiavelli",
-  164,
-  "Unread"
-)
-const book5 = new Book(
-  "The Lessons of History",
-  "Will & Ariel Durant",
-  123,
-  "Read",
-)
-const book6 = new Book(
-  "Gödel, Escher, Bach",
-  "Douglas Hofstadter",
-  777,
-  "Unread",
-)
-
-const book7 = new Book(
-  "Hamlet",
-  "William Shakespeare",
-  104,
-  "Read",
-)
-
-
-const book8 = new Book(
-  "Lord of the Flies",
-  "William Golding",
-  315,
-  "Unread",
-)
-
-const book9 = new Book(
-  "Fahrenheit 451",
-  "Ray Bradbury",
-  256,
-  "Unread",
-)
-
-const book10 = new Book(
-  "Thus Spoke Zarathustra",
-  "Friedrich Nietzsche",
-  400,
-  "Unread",
-)
-
-const book11 = new Book(
-  "Gulliver's Travels",
-  "Jonathan Swift",
-  336,
-  "Read",
-)
+addBookToLib("The Republic", "Plato", 480, "Read");
+addBookToLib("1984", "George Orwell", 328, "Read");
+addBookToLib("Animal Farm", "George Orwell", 92, "Read");
+addBookToLib("Brave New World", "Aldous Huxley", 311, "Read");
+addBookToLib("The Prince", "Niccolò Machiavelli", 164, "Unread");
+addBookToLib("The Lessons of History", "Will & Ariel Durant", 123, "Read");
+addBookToLib("Gödel, Escher, Bach", "Douglas Hofstadter", 777, "Unread");
+addBookToLib("Hamlet", "William Shakespeare", 104, "Read");
+addBookToLib("Lord of the Flies", "William Golding", 315, "Unread");
+addBookToLib("Fahrenheit 451", "Ray Bradbury", 256, "Unread");
+addBookToLib("Thus Spoke Zarathustra", "Friedrich Nietzsche", 400, "Unread");
+addBookToLib("Gulliver's Travels", "Jonathan Swift", 336, "Read");
 
 
 // Looping and adding books to shelf
 
-function addBookToLib() {
+function loopBookProp() {
   for (let i = 0; i < myLibrary.length; i++) {
     const bookTitle = myLibrary[i].title;
     const bookAuthor = myLibrary[i].author;
     const bookPageCount = myLibrary[i].pages;
     const bookReadStatus = myLibrary[i].isRead;
-
+    
     // Pass the parameters to the 
     addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount);
   }
 }
 
-addBookToLib();
+loopBookProp();
 
 // Render a book to the DOM
 function addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount) {
@@ -247,8 +176,6 @@ function addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount) {
   };
 
   bookDiv.addEventListener('click', displayBook);
-
-
 }
 
 function displayBook() {
