@@ -6,6 +6,8 @@ const bottomShelf = document.querySelector('#bookshelf .bottom-books');
 const bookInfo = document.querySelector('#bookInfo');
 const bookTitleInfo = document.querySelector('.bookTitleInfo p');
 const bookAuthorInfo = document.querySelector('.bookAuthorInfo p');
+const bookPageCountInfo = document.querySelector('.bookPageCountInfo p');
+const bookReadStatusInfo = document.querySelector('.bookReadStatusInfo p')
 
 const books = document.querySelectorAll('.book');
 
@@ -70,19 +72,17 @@ const book3 = new Book(
 )
 
 const book4 = new Book(
+  "The Prince",
+  "Niccolò Machiavelli",
+  164,
+  "Unread"
+)
+const book5 = new Book(
   "The Lessons of History",
   "Will & Ariel Durant",
   123,
   "Read",
 )
-
-const book5 = new Book(
-  "Hamlet",
-  "William Shakespeare",
-  104,
-  "Read",
-)
-
 const book6 = new Book(
   "Gödel, Escher, Bach",
   "Douglas Hofstadter",
@@ -91,59 +91,107 @@ const book6 = new Book(
 )
 
 const book7 = new Book(
+  "Hamlet",
+  "William Shakespeare",
+  104,
+  "Read",
+)
+
+
+const book8 = new Book(
   "Lord of the Flies",
   "William Golding",
   315,
   "Unread",
 )
 
+const book9 = new Book(
+  "Fahrenheit 451",
+  "Ray Bradbury",
+  256,
+  "Unread",
+)
 
-// Render to the DOM
-function addBookToShelf() {
+const book10 = new Book(
+  "Thus Spoke Zarathustra",
+  "Friedrich Nietzsche",
+  400,
+  "Unread",
+)
+
+
+// Looping and adding books to shelf
+
+function addBookToLib() {
+  for (let i = 0; i < myLibrary.length; i++) {
+    const bookTitle = myLibrary[i].title;
+    const bookAuthor = myLibrary[i].author;
+    const bookPageCount = myLibrary[i].pages;
+    const bookReadStatus = myLibrary[i].isRead;
+
+    // Pass the parameters to the 
+    addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount);
+  }
+}
+
+addBookToLib();
+
+// Render a book to the DOM
+function addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount) {
   //Create the DOM Elements
   
   const bookDiv = document.createElement("div");
   bookDiv.classList.add('book');
-
+  bookDiv.dataset.pageCount = bookPageCount;
+  bookDiv.dataset.bookReadStatus = bookReadStatus;
+  
 
   // Create the spine-title div
   const spineTitleDiv = document.createElement("div");
   spineTitleDiv.classList.add('spine-title');
   const titleP = document.createElement("p");
-  titleP.textContent = myLibrary[1].title;
+  titleP.textContent = bookTitle;
   spineTitleDiv.appendChild(titleP);
 
   // Create the spine-author div
   const spineAuthorDiv = document.createElement("div");
   spineAuthorDiv.classList.add('spine-author');
   const authorP = document.createElement("p");
-  authorP.textContent = myLibrary[1].author;
+  authorP.textContent = bookAuthor;
   spineAuthorDiv.appendChild(authorP);
 
   // Append to the main book div
   bookDiv.appendChild(spineTitleDiv);
   bookDiv.appendChild(spineAuthorDiv);
-  topShelf.appendChild(bookDiv);
+
+  if (bookReadStatus == "Read") {
+    topShelf.appendChild(bookDiv);
+  } else {
+    bottomShelf.insertBefore(bookDiv, bottomShelf.firstChild);
+  };
+
   bookDiv.addEventListener('click', displayBook);
+
 
 }
 
-// addBookToShelf();
-
 function displayBook() {
-    // A function for displaying the info of a book in a Modal.
-    
+    // A Modal function for displaying the info of a book (front cover POV).
+
     // Get the book reference
     const bookTitle = this.querySelector(".spine-title p").textContent;
     const bookAuthor = this.querySelector(".spine-author p").textContent;
+    const bookPageCount = this.dataset.pageCount;
+    const bookReadStatus = this.dataset.bookReadStatus;
 
      // Book Spine references are scoped globally, see bookTitleInfo and bookAuthorInfo above.
     
     // Then, dynamically change the info based on the clicked div ("this").
     bookTitleInfo.textContent = bookTitle;
     bookAuthorInfo.textContent = bookAuthor;
-  
-    const bookInfo = document.querySelector('#bookInfo');
+    bookPageCountInfo.textContent = `${bookPageCount} Pages`;
+    bookReadStatusInfo.textContent = bookReadStatus;
+
     // Call the modal
     bookInfo.showModal();
 }
@@ -153,7 +201,7 @@ function openForm() {
 }
 
 
-// Function for closing when clicking the backdrop and button of the modal.
+// Below: Function for closing when clicking the backdrop and button of the modal.
 
 const closeModalButtons = document.querySelectorAll('.closeModal');
 closeModalButtons.forEach(button => button.addEventListener('click', () => {
