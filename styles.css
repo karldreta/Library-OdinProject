@@ -182,7 +182,7 @@ h1:hover {
     border-radius: 20px;
     outline: none;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.7);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 16px;
 }
 
@@ -364,7 +364,7 @@ input[type=checkbox].toggle:not(:checked) + label:before {
 input[type=checkbox].toggle:checked + label {
     text-align: left;
     border-color: #800000;
-    box-shadow: 1px 1px 1px;
+    box-shadow: 1px 1px 3px #800000;
 }
 
 input[type=checkbox].toggle:checked + label:after {
