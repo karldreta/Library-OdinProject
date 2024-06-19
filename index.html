@@ -66,20 +66,23 @@
         <form action="#" method="post">
             <div class="book-title">
                 <label for="bookTitle" class="form-label">Title</label>
-                <input type="text" id="bookTitle" name="bookTitle" required>
+                <input type="text" id="bookTitle" name="bookTitle" maxlength="30">
+                <div class="showInputMessage"></div>
             </div>
             <div class="book-author">
                 <label for="bookAuthor" class="form-label">Author</label>
-                <input type="text" id="bookAuthor" name="bookAuthor" required>
+                <input type="text" id="bookAuthor" name="bookAuthor" maxlength="25">
+                <div class="showInputMessage"></div>
             </div>
             <div class="book-status">
                 <div class="book-pages">
                     <label for="bookPages" class="form-label">No. of Pages</label>
-                    <input type="tel" id="bookPages" name="bookPages" required>
+                    <input type="tel" id="bookPages" name="bookPages" minlength="1" maxlength="5">
+                    <div class="showInputMessage"></div>
                 </div>
                <div class="toggleContainer">
                 <div>
-                    <input type="checkbox" class="toggle" id="default">
+                    <input type="checkbox" class="toggle" id="default" name="isRead">
                     <label for="default" data-checked="Read" data-unchecked="Unread"></label>
                 </div>
                </div>
