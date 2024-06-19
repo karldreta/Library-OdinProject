@@ -24,7 +24,6 @@ const form = document.querySelector('#addBookForm');
 form.addEventListener("submit", e => {
   e.preventDefault(); 
   // Need to validate first, but we'll do that later.
-
   // Create New Book
 });
 
@@ -117,6 +116,13 @@ const book10 = new Book(
   "Friedrich Nietzsche",
   400,
   "Unread",
+)
+
+const book11 = new Book(
+  "Gulliver's Travels",
+  "Jonathan Swift",
+  336,
+  "Read",
 )
 
 
