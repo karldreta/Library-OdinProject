@@ -17,3 +17,5 @@ Project: Library from JS path of The Odin Project
 ## Reference:
 
 [Web Dev Simplified: Dialog](https://blog.webdevsimplified.com/2023-04/html-dialog/)
+
+[Toggle Checkbox](https://www.youtube.com/watch?v=4y_IoxjOALQ)

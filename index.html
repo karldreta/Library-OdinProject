@@ -77,9 +77,12 @@
                     <label for="bookPages" class="form-label">No. of Pages</label>
                     <input type="tel" id="bookPages" name="bookPages" required>
                 </div>
-                <button type="button" id="readToggle">Read it?
-                    <!-- Planning to create a toggle button -->
-                </button>
+               <div class="toggleContainer">
+                <div>
+                    <input type="checkbox" class="toggle" id="default">
+                    <label for="default" data-checked="Read" data-unchecked="Unread"></label>
+                </div>
+               </div>
             </div>
             <button type="submit" formmethod="dialog" id="bookSubmit">Append to Collection</button>
         </form>

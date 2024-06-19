@@ -207,6 +207,7 @@ h1:hover {
     border-radius: 20px;
     overflow: hidden;
     z-index: 10;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .modal > .form-header {
@@ -255,7 +256,7 @@ h1:hover {
 
 .form-label {
     display: inline-block;
-    font-size: 17px;
+    font-size: 13px;
 }
 
 .book-title > input,
@@ -286,27 +287,112 @@ h1:hover {
     gap: 20px;
 }
 
-.book-status > button {
+/* Toggle button for isRead status */
+
+.book-status > .toggleContainer {
+    /* border: 1px solid red; */
     margin: 0;
-    font-size: 16px;
+    margin-top: 10px;
+    padding-top: 5px;
+    text-align: center;
     align-self: center;
-    border: 3px solid black;
-    border-radius: 50px;
-    outline: none;
-    font-family: 'Times New Roman', Times, serif;
+    justify-items: center;
 }
+
+
+input[type=checkbox].toggle {
+    display: none;
+}
+
+input[type=checkbox].toggle + label {
+    display: inline-block;
+    height: 25px;
+    width: 100px;
+    position: relative;
+    border: 2px solid black;
+    border-radius: 2px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+input[type=checkbox].toggle + label:before {
+    border: 2px solid black;
+    position: absolute;
+    top: 1px;
+    width: 15px;
+    height: 15px;
+    content: '';
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+
+input[type=checkbox].toggle + label:after {
+    /* border: 1px solid red; */
+    font-size: 13px;
+    width: 60px;
+    text-align: center;
+    z-index: 2;
+    text-transform: uppercase;
+    position: absolute;
+    top: 4px;
+    right: 0;
+    overflow: hidden;
+}
+
+input[type=checkbox].toggle:not(:checked) + label {
+    background-color: transparent;
+    text-align: right;
+}
+
+input[type=checkbox].toggle:not(:checked) + label:after {
+    content: attr(data-unchecked);
+    right: 0;
+    left: auto;
+    opacity: 1;
+    color: black;
+}
+
+input[type=checkbox].toggle:not(:checked) + label:before {
+    left: 1px;
+    background-color: white;
+}
+
+input[type=checkbox].toggle:checked + label {
+    text-align: left;
+    border-color: #800000;
+    box-shadow: 1px 1px 1px;
+}
+
+input[type=checkbox].toggle:checked + label:after {
+    content: attr(data-checked);
+    left: 0;
+    right: auto;
+    opacity: 1;
+    color: #800000;
+}
+
+input[type=checkbox].toggle:checked + label:before {
+    left: 75px;
+    border-color: #800000;
+    background-color: #800000;
+}
+
 
 #bookSubmit {
     margin: 0;
     width: 180px;
     height: 40px;
-    font-size: 16px;
+    font-size: 12px;
     align-self: center;
     margin-top: 40px;
     border: 3px solid black;
     border-radius: 50px;
     outline: none;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 /* Display Book Info Modal */
