@@ -18,14 +18,84 @@ books.forEach(book => book.addEventListener('click', displayBook));
 const button = document.querySelector('#addBook').addEventListener('click', openForm);
 const addBookDialog = document.querySelector('.book-form-container');
 const dialogs = document.querySelectorAll('dialog');
-const submitBookBtn  = document.querySelector('#bookSubmit');
+
+
+// const submitBookBtn  = document.querySelector('#bookSubmit');
+
+const toggleReadStatus = document.querySelector('#default');
+// toggleReadStatus.addEventListener('click', () => {
+//   const label = document.querySelector('label[for="default"]');
+
+//     if (toggleReadStatus.checked) {
+//       return label.dataset.checked
+//     } else {
+//       return label.dataset.unchecked
+//     }
+//   }
+// );
+
 
 const form = document.querySelector('#addBookForm');
 form.addEventListener("submit", e => {
   e.preventDefault(); 
   // Need to validate first, but we'll do that later.
+  validateInputs();
+
+  console.log(toggleReadStatus.checked);
   // Create New Book
 });
+
+// Below: Input Validation
+
+function validateInputs() {
+  const bookTitle = document.querySelector('#bookTitle')
+  const bookTitleValue = bookTitle.value;
+  const bookAuthor = document.querySelector('#bookAuthor');
+  const bookAuthorValue = bookAuthor.value;
+  const bookPages = document.querySelector('#bookPages');
+  const bookPagesValue = bookPages.value;
+  
+  if (bookTitleValue === "") {
+      displayError(bookTitle, "Required");
+  } else if ((bookTitleValue.length > 30)){
+    displayError(bookTitle, "Invalid Book Title");
+  } else {
+      displaySuccess(bookTitle);
+  };
+
+
+  if (bookAuthorValue === "") {
+    displayError(bookAuthor, "Required");
+  } else {
+      displaySuccess(bookAuthor);
+  };
+
+
+   if (bookPagesValue === "") {
+        displayError(bookPages, "Required");
+    } else if (isNaN(bookPagesValue)) {
+        displayError(bookPages, "Must be a number");
+    } else {
+        displaySuccess(bookPages);
+    }
+
+}
+
+function displayError(element, message) {
+  const inputContainer = element.parentElement;
+  const showEffect = inputContainer.querySelector('.showEffect');
+
+  showEffect.textContent = `*${message}`;
+}
+
+function displaySuccess(element) {
+  const inputContainer = element.parentElement;
+  const showEffect = inputContainer.querySelector('.showEffect');
+
+  showEffect.textContent = "";
+}
+
+// The library Array
 
 const myLibrary = [];
 
