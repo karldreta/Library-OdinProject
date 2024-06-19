@@ -2,10 +2,24 @@ const body = document.querySelector('body');
 const bookshelf = document.querySelector('#bookshelf');
 const books = document.querySelectorAll('.book');
 books.forEach(book => book.addEventListener('click', displayBook));
+
+
 const button = document.querySelector('#addBook');
-button.addEventListener('click', addBookToLib);
-const addBookForm = document.querySelector('.book-form-container');
+button.addEventListener('click', openForm);
+
+
+const addBookDialog = document.querySelector('.book-form-container');
 const dialogs = document.querySelectorAll('dialog');
+const submitBookBtn  = document.querySelector('#bookSubmit')
+const form = document.querySelector('#addBookForm');
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  // Need to validate first, but we'll do that later.
+
+  // Create New Book
+});
+
+
 const closeModalButtons = document.querySelectorAll('.closeModal');
 closeModalButtons.forEach(button => button.addEventListener('click', () => {
     const modal = button.closest('.modal');
@@ -30,7 +44,6 @@ function Book(title, author, pages, isRead) {
     this.isRead = isRead;
     this.info = function() { return `${this.title} by ${this.author} has ${this.pages} pages, ${this.isRead}.`;
     }
-    // Add a finished reading date()?
 
     myLibrary.push(this);
 }
@@ -59,11 +72,14 @@ function displayBook() {
     bookInfo.showModal();
 }
 
-function addBookToLib() {
-     // A function to bring up the form.
-    addBookForm.showModal();
+function openForm() {
+    addBookDialog.showModal();
 }
 
+
+function addBookToLib() {
+
+}
 
 // Start Function for when clicking the backdrop of a modal
 
