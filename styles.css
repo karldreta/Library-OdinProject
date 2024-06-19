@@ -315,7 +315,7 @@ input[type=checkbox].toggle + label {
     margin: 0;
     cursor: pointer;
     box-sizing: border-box;
-    transition: all 0.3s ease;
+    transition: all 0.15s ease;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -326,12 +326,11 @@ input[type=checkbox].toggle + label:before {
     width: 15px;
     height: 15px;
     content: '';
-    transition: all 0.3s ease;
+    transition: all 0.15s ease;
     z-index: 3;
 }
 
 input[type=checkbox].toggle + label:after {
-    /* border: 1px solid red; */
     font-size: 13px;
     width: 60px;
     text-align: center;
@@ -352,7 +351,6 @@ input[type=checkbox].toggle:not(:checked) + label:after {
     content: attr(data-unchecked);
     right: 0;
     left: auto;
-    opacity: 1;
     color: black;
 }
 
@@ -371,8 +369,8 @@ input[type=checkbox].toggle:checked + label:after {
     content: attr(data-checked);
     left: 0;
     right: auto;
-    opacity: 1;
     color: #800000;
+
 }
 
 input[type=checkbox].toggle:checked + label:before {
