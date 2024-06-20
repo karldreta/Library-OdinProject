@@ -34,52 +34,61 @@ const toggleReadStatus = document.querySelector('#default');
 //   }
 // );
 
+// addBookToLib("1984", "George Orwell", 328, "Read"); Refer Only
 
 const form = document.querySelector('#addBookForm');
+
 form.addEventListener("submit", e => {
-  e.preventDefault(); 
-  // Need to validate first, but we'll do that later.
-  validateInputs();
-
-
-  console.log(toggleReadStatus.checked);
-  // Create New Book
-});
-
-// Below: Input Validation
-
-function validateInputs() {
-  const bookTitle = document.querySelector('#bookTitle')
+  // e.preventDefault(); // Prevent the form from submitting normally
+  // Collect input values
+  const bookTitle = document.querySelector('#bookTitle');
   const bookTitleValue = bookTitle.value;
   const bookAuthor = document.querySelector('#bookAuthor');
   const bookAuthorValue = bookAuthor.value;
   const bookPages = document.querySelector('#bookPages');
   const bookPagesValue = bookPages.value;
-  
-  if (bookTitleValue === "") {
-      displayError(bookTitle, "Required");
-  } else if ((bookTitleValue.length > 30)){
+
+  // First, Validate Inputs
+  if (validateInputs(bookTitle, bookAuthor, bookPages)) {
+    // Create New Book
+    addBookToLib(bookTitleValue, bookAuthorValue, bookPagesValue, toggleReadStatus.checked ? "Read" : "Unread");
+     // Render the new book immediately
+     addBookToShelf(bookTitleValue, bookAuthorValue, toggleReadStatus.checked ? "Read" : "Unread", bookPagesValue);
+  }
+});
+
+// Input validation function
+function validateInputs(bookTitle, bookAuthor, bookPages) {
+  let isValid = true;
+
+  if (bookTitle.value === "") {
+    displayError(bookTitle, "Required");
+    isValid = false;
+  } else if (bookTitle.value.length > 30) {
     displayError(bookTitle, "Invalid Book Title");
+    isValid = false;
   } else {
-      displaySuccess(bookTitle);
-  };
+    displaySuccess(bookTitle);
+  }
 
-
-  if (bookAuthorValue === "") {
+  if (bookAuthor.value === "") {
     displayError(bookAuthor, "Required");
+    isValid = false;
   } else {
-      displaySuccess(bookAuthor);
-  };
+    displaySuccess(bookAuthor);
+  }
 
+  if (bookPages.value === "") {
+    displayError(bookPages, "Required");
+    isValid = false;
+  } else if (isNaN(bookPages.value)) {
+    displayError(bookPages, "Must be a number");
+    isValid = false;
+  } else {
+    displaySuccess(bookPages);
+  }
 
-   if (bookPagesValue === "") {
-        displayError(bookPages, "Required");
-    } else if (isNaN(bookPagesValue)) {
-        displayError(bookPages, "Must be a number");
-    } else {
-        displaySuccess(bookPages);
-    }
-
+  return isValid;
 }
 
 function displayError(element, message) {
@@ -107,7 +116,8 @@ function Book(title, author, pages, isRead) {
 
 function addBookToLib(title, author, pageCount, readStatus) {
   const newBook = new Book(title, author, pageCount, readStatus);
-  myLibrary.push(newBook); // Add the new book to the array
+  myLibrary.push(newBook); // Add the new book to the array\
+  console.log('Added Book:', myLibrary[myLibrary.length - 1]);
 }
 
 // The Books
@@ -121,9 +131,10 @@ addBookToLib("Gödel, Escher, Bach", "Douglas Hofstadter", 777, "Unread");
 addBookToLib("Hamlet", "William Shakespeare", 104, "Read");
 addBookToLib("Lord of the Flies", "William Golding", 315, "Unread");
 addBookToLib("Fahrenheit 451", "Ray Bradbury", 256, "Unread");
-addBookToLib("Thus Spoke Zarathustra", "Friedrich Nietzsche", 400, "Unread");
+addBookToLib("Thus Spoke Zarathustra", "Friedrich Nietzsche", 400, "Read");
 addBookToLib("Gulliver's Travels", "Jonathan Swift", 336, "Read");
-
+addBookToLib("The Book of Five Rings", "Musashi Miyamoto", 80, "Unread")
+addBookToLib("The Red Book", "Carl Jung", 416 , "Unread")
 
 // Looping and adding books to shelf
 
@@ -144,7 +155,7 @@ loopBookProp();
 // Render a book to the DOM
 function addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount) {
   //Create the DOM Elements
-  
+
   const bookDiv = document.createElement("div");
   bookDiv.classList.add('book');
   bookDiv.dataset.pageCount = bookPageCount;
