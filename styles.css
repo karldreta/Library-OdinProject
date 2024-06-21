@@ -490,6 +490,34 @@ input[type=checkbox].toggle:checked + label:before {
     color: black;
 }
 
+/* Below: Storage Alert */
+
+.storageAlert{
+    border-color: #8b0000;
+    height: 150px;
+    width: 350px;
+    padding: 30px;
+}
+
+.storageAlert div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.storageAlert div p {
+    margin: 0;
+    text-align: center;
+}
+
+.alert.closeModal {
+    border-color: #8b0000;
+    color: #8b0000;
+}
 
 /* Hover Effects */
 

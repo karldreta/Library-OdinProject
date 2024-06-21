@@ -37,27 +37,40 @@ const toggleReadStatus = document.querySelector('#default');
 // addBookToLib("1984", "George Orwell", 328, "Read"); Refer Only
 
 const form = document.querySelector('#addBookForm');
+  let topShelfSpace = 0;
+  let bottomShelfSpace = 0;
 
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  // Collect input values
-  const bookTitle = document.querySelector('#bookTitle');
-  const bookTitleValue = bookTitle.value;
-  const bookAuthor = document.querySelector('#bookAuthor');
-  const bookAuthorValue = bookAuthor.value;
-  const bookPages = document.querySelector('#bookPages');
-  const bookPagesValue = bookPages.value;
+  form.addEventListener("submit", e => {
+    e.preventDefault(); // Prevent the form from submitting normally
+    
+    // Collect input values
+    const bookTitle = document.querySelector('#bookTitle');
+    const bookTitleValue = bookTitle.value;
+    const bookAuthor = document.querySelector('#bookAuthor');
+    const bookAuthorValue = bookAuthor.value;
+    const bookPages = document.querySelector('#bookPages');
+    const bookPagesValue = bookPages.value;
+  
+    // First, Validate Inputs
+    if (validateInputs(bookTitle, bookAuthor, bookPages)) {
+      // Check shelf space and add book accordingly
+      if (toggleReadStatus.checked && topShelfSpace < 4) {
+        addBookToLib(bookTitleValue, bookAuthorValue, bookPagesValue, "Read");
+        addBookToShelf(bookTitleValue, bookAuthorValue, "Read", bookPagesValue);
+        topShelfSpace++;
+        addBookDialog.close();
+      } else if (!toggleReadStatus.checked && bottomShelfSpace < 6) {
+        addBookToLib(bookTitleValue, bookAuthorValue, bookPagesValue, "Unread");
+        addBookToShelf(bookTitleValue, bookAuthorValue, "Unread", bookPagesValue);
+        bottomShelfSpace++;
 
-  // First, Validate Inputs
-  if (validateInputs(bookTitle, bookAuthor, bookPages)) {
-    // Create New Book
-    addBookToLib(bookTitleValue, bookAuthorValue, bookPagesValue, toggleReadStatus.checked ? "Read" : "Unread");
-     // Render the new book immediately
-     addBookToShelf(bookTitleValue, bookAuthorValue, toggleReadStatus.checked ? "Read" : "Unread", bookPagesValue);
-
-     addBookDialog.close();
+        // Close the addBook Modal
+        addBookDialog.close();
+      } else {
+        storageAlert()
+      }
     }
-});
+  });
 
 // Input validation function
 function validateInputs(bookTitle, bookAuthor, bookPages) {
@@ -216,6 +229,10 @@ function openForm() {
     addBookDialog.showModal();
 }
 
+function storageAlert() {
+  const alertModal = document.querySelector('.storageAlert');
+  alertModal.showModal();
+}
 
 // Below: Function for closing when clicking the backdrop and button of the modal.
 
