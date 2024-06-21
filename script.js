@@ -39,7 +39,7 @@ const toggleReadStatus = document.querySelector('#default');
 const form = document.querySelector('#addBookForm');
 
 form.addEventListener("submit", e => {
-  // e.preventDefault(); // Prevent the form from submitting normally
+  e.preventDefault();
   // Collect input values
   const bookTitle = document.querySelector('#bookTitle');
   const bookTitleValue = bookTitle.value;
@@ -54,7 +54,9 @@ form.addEventListener("submit", e => {
     addBookToLib(bookTitleValue, bookAuthorValue, bookPagesValue, toggleReadStatus.checked ? "Read" : "Unread");
      // Render the new book immediately
      addBookToShelf(bookTitleValue, bookAuthorValue, toggleReadStatus.checked ? "Read" : "Unread", bookPagesValue);
-  }
+
+     addBookDialog.close();
+    }
 });
 
 // Input validation function

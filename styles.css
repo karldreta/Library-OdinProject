@@ -88,15 +88,10 @@ h1:hover {
     padding: 3px;
     margin: 0;
     transform: rotate(-90deg);
-}
-
-.book {
-    border: 1px solid black;
-    width: 60px;
-    padding: 2px;
     z-index: 10;
     background-color: white;
 }
+
 
 .book > .spine-title {
     font-size: 10px;
