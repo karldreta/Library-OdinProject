@@ -139,9 +139,11 @@ addBookToLib("The Red Book", "Carl Jung", 416 , "Unread")
 
 // Render a book to the DOM
 function addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount, bookIndex) {
-
+  
   //Create the DOM Elements
   const bookDiv = document.createElement("div");
+  bookDiv.setAttribute("style", "border: 1px solid blue;");
+
   bookDiv.classList.add('book');
   bookDiv.dataset.pageCount = bookPageCount;
   bookDiv.dataset.bookReadStatus = bookReadStatus;
@@ -177,7 +179,8 @@ function addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount, bo
 // Opens a modal for displaying the info of a book (front cover POV).
 function displayBook() {
 
-    // Get the book reference
+  // Get the book reference
+    const bookDiv = this;
     const bookTitle = this.querySelector(".spine-title p").textContent;
     const bookAuthor = this.querySelector(".spine-author p").textContent;
     const bookPageCount = this.dataset.pageCount;
@@ -185,7 +188,6 @@ function displayBook() {
     // Get the index of the book below
     const index = this.dataset.bookIndex;
 
-    console.log(index);
 
      // Book Spine references are scoped globally, see bookTitleInfo and bookAuthorInfo above.
     
@@ -197,6 +199,24 @@ function displayBook() {
 
     // Call the modal
     bookInfo.showModal();
+
+    // Below: Withdraw function: Better to add it inside the scope of displayBook, so we don't need to pass anything
+
+    const withdrawBtn = document.querySelector('#withdraw');
+    withdrawBtn.addEventListener('click', withdrawBook)
+
+    function withdrawBook() {
+      myLibrary.splice(index, 1);
+      if (bookReadStatus === "Read") {
+        topShelf.removeChild(bookDiv);
+        topShelfSpace --;
+    } else {
+        bottomShelf.removeChild(bookDiv);
+        bottomShelfSpace --;
+    }
+      bookInfo.close()
+    }
+
 }
 
 function openForm() {
@@ -207,6 +227,7 @@ function storageAlert() {
   const alertModal = document.querySelector('.storageAlert');
   alertModal.showModal();
 }
+
 
 // Below: Function for closing when clicking the backdrop and button of the modal.
 
