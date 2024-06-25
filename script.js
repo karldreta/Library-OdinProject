@@ -37,6 +37,8 @@ const toggleReadStatus = document.querySelector('#default');
 // addBookToLib("1984", "George Orwell", 328, "Read"); Refer Only
 
 const form = document.querySelector('#addBookForm');
+
+// To constrain the storage, if we then decide to remove a book, we can just topShelfSpace-- / bottomShelfSpace--, in theory this will work since we'll just move down to negative numbers.
   let topShelfSpace = 0;
   let bottomShelfSpace = 0;
 
@@ -131,8 +133,10 @@ function Book(title, author, pages, isRead) {
 
 function addBookToLib(title, author, pageCount, readStatus) {
   const newBook = new Book(title, author, pageCount, readStatus);
-  myLibrary.push(newBook); // Add the new book to the array\
-  console.log('Added Book:', myLibrary[myLibrary.length - 1]);
+  myLibrary.push(newBook); // Add the new book to the array
+
+  console.log(myLibrary.indexOf(newBook)); // Need a way to pass this
+  // return myLibrary.indexOf(newBook);? => Infinite Loop!
 }
 
 // The Books
@@ -153,7 +157,7 @@ addBookToLib("The Red Book", "Carl Jung", 416 , "Unread")
 
 // Looping and adding books to shelf
 
-function loopBookProp() {
+function addBookProperties() {
   for (let i = 0; i < myLibrary.length; i++) {
     const bookTitle = myLibrary[i].title;
     const bookAuthor = myLibrary[i].author;
@@ -161,20 +165,25 @@ function loopBookProp() {
     const bookReadStatus = myLibrary[i].isRead;
     
     // Pass the parameters to the 
-    addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount);
+    addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount, i);
   }
 }
 
-loopBookProp();
+addBookProperties();
 
 // Render a book to the DOM
-function addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount) {
+function addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount, i) {
   //Create the DOM Elements
 
   const bookDiv = document.createElement("div");
   bookDiv.classList.add('book');
   bookDiv.dataset.pageCount = bookPageCount;
   bookDiv.dataset.bookReadStatus = bookReadStatus;
+
+  
+  bookDiv.dataset.bookIndex = i;
+  
+  console.log(bookDiv.dataset.bookIndex);
   
 
   // Create the spine-title div
@@ -204,14 +213,19 @@ function addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount) {
   bookDiv.addEventListener('click', displayBook);
 }
 
+// Opens a modal for displaying the info of a book (front cover POV).
 function displayBook() {
-    // A Modal function for displaying the info of a book (front cover POV).
 
     // Get the book reference
     const bookTitle = this.querySelector(".spine-title p").textContent;
     const bookAuthor = this.querySelector(".spine-author p").textContent;
     const bookPageCount = this.dataset.pageCount;
     const bookReadStatus = this.dataset.bookReadStatus;
+
+    // Get the index of the book below
+    const index = this.dataset.bookIndex;
+    console.log(index);
+
 
      // Book Spine references are scoped globally, see bookTitleInfo and bookAuthorInfo above.
     
