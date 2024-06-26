@@ -40,7 +40,6 @@ const form = document.querySelector('#addBookForm');
       // Check shelf space and add book accordingly
       if (toggleReadStatus.checked && topShelfSpace < 4) {
         addBookToLib(bookTitleValue, bookAuthorValue, bookPagesValue, "Read");
-        // addBookToShelf(bookTitleValue, bookAuthorValue, "Read", bookPagesValue);
         topShelfSpace++;
         addBookDialog.close();
       } else if (!toggleReadStatus.checked && bottomShelfSpace < 6) {
@@ -117,7 +116,7 @@ function addBookToLib(title, author, pageCount, readStatus) {
   myLibrary.push(newBook); // Add the new book to the array
   const bookIndex = myLibrary.indexOf(newBook); // Get the index of the new book
 
-  // Call the function to add book to shelf and pass the index as well
+  // Call the function immediately to add book to shelf and pass the index as well
   addBookToShelf(title, author, readStatus, pageCount, bookIndex);
 }
 
@@ -142,8 +141,6 @@ function addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount, bo
   
   //Create the DOM Elements
   const bookDiv = document.createElement("div");
-  bookDiv.setAttribute("style", "border: 1px solid blue;");
-
   bookDiv.classList.add('book');
   bookDiv.dataset.pageCount = bookPageCount;
   bookDiv.dataset.bookReadStatus = bookReadStatus;
