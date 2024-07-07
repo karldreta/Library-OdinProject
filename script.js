@@ -104,11 +104,13 @@ function displaySuccess(element) {
 
 const myLibrary = [];
 
-function Book(title, author, pages, isRead) {
+class Book {
+  constructor(title, author, pageCount, readStatus) {
     this.title = title;
     this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
+    this.pageCount = pageCount;
+    this.readStatus = readStatus;
+  }
 }
 
 function addBookToLib(title, author, pageCount, readStatus) {
@@ -211,13 +213,13 @@ function displayBook() {
         bottomShelf.removeChild(bookDiv);
         bottomShelfSpace --;
     }
-      bookInfo.close()
+        bookInfo.close();
     }
 
 }
 
 function openForm() {
-    addBookDialog.showModal();
+  addBookDialog.showModal();
 }
 
 function storageAlert() {
