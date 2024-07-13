@@ -176,6 +176,8 @@ function addBookToShelf(bookTitle, bookAuthor, bookReadStatus, bookPageCount, bo
 }
 
 // Opens a modal for displaying the info of a book (front cover POV).
+let currentWithdrawBookHandler; // This will be used to track the withdrawBook event handler
+
 function displayBook() {
 
   // Get the book reference
@@ -201,21 +203,28 @@ function displayBook() {
 
     // Below: Withdraw function: Better to add it inside the scope of displayBook, so we don't need to pass anything
 
-    const withdrawBtn = document.querySelector('#withdraw');
-    withdrawBtn.addEventListener('click', withdrawBook)
-
     function withdrawBook() {
       myLibrary.splice(index, 1);
       if (bookReadStatus === "Read") {
         topShelf.removeChild(bookDiv);
         topShelfSpace --;
-    } else {
+      } else {
         bottomShelf.removeChild(bookDiv);
         bottomShelfSpace --;
-    }
-        bookInfo.close();
+      }
+      bookInfo.close();
     }
 
+    const withdrawBtn = document.querySelector('#withdraw');
+    // First remove the current event handler (if any).
+    // This ensures the withdrawBtn only has one event listener attached to it, which is the last withdrawBook function.
+    // This step is crucial because JavaScript will attach multiple event listeners to the withdrawBtn if not removed,
+    // resulting in all previous event listeners being called when the button is clicked.
+
+    // Question: What happens when you add multiple event listeners to a single element without removing the previous ones?
+    withdrawBtn.removeEventListener('click', currentWithdrawBookHandler);
+    withdrawBtn.addEventListener('click', withdrawBook)
+    currentWithdrawBookHandler = withdrawBook; // This will set the global variable to withdrawBook function.
 }
 
 function openForm() {
