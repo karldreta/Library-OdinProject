@@ -1,6 +1,7 @@
 # libraryProject-odin
 Project: Library from JS path of The Odin Project
 
+### [See Live Preview here](https://karldreta.github.io/libraryProject-odin/)
 
 ## This is an Odin Project: Library
 
@@ -46,7 +47,15 @@ Project: Library from JS path of The Odin Project
             bottomShelfSpace--;
         ```
     
-    I had feeling this would work since if the shelves already had books in them, then I just need to subtract the existing books from the total book space each shelf can accommodate and the result will be the limit. And on removal the numbers will just move down to `0` and into `negative numbers`.
+    I had feeling this would work. Here's the reasoning behind this approach:
+
+    When the page loads, if the shelves already have books (e.g., `8` books on the top shelf and `6` books on the bottom shelf), I need to set the limits to `4` for the top and `6` for the bottom. This means the existing books are subtracted from the total book space each shelf can accommodate. For example, with `12` spaces per shelf, having `8` books already on the top shelf means there are `4` spaces left for new books.
+
+    If a user removes a book right at the start, the `topShelfSpace` or `bottomShelfSpace` will move into negative numbers. For instance, if `let topShelfSpace` is initially `0` and the user removes a book, `topShelfSpace` will become `-1`. This continues until there are no more books to remove, making `topShelfSpace` equal to `-8`, if all `8` books are removed.
+
+    As users add more books, the count will move back towards zero. So if `topShelfSpace` is `-8` after removing all books, adding one book will make it `-7`, and so on. It will eventually reach zero but will never exceed the limit of `4` for adding new books. This approach ensures that the number of books on each shelf is properly constrained within the set limits, even when starting with pre-existing books.
+
+    Also since the `withdraw` button is on the books the user will not be able to remove a book unless there's a book to begin with. This ensures that the minimum value `topShelfSpace` or `bottomShelfSpace` can have is `-8`.
 
 ## Final Thoughts
 
