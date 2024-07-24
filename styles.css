@@ -185,6 +185,7 @@ h1:hover {
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.7);
     font-family: 'Courier New', Courier, monospace;
     font-size: 16px;
+    font-weight: 600;
 }
 
 #addBook:hover {
@@ -256,7 +257,8 @@ h1:hover {
 
 .form-label {
     display: inline-block;
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: 600;
 }
 
 #addBookForm div {
@@ -290,6 +292,7 @@ h1:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    font-weight: 600;
 }
 
 /* Form Validation */ 
@@ -304,9 +307,10 @@ h1:hover {
 
 #bookSubmit {
     margin: 0;
-    width: 180px;
+    width: 190px;
     height: 40px;
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 600;
     align-self: center;
     border: 3px solid black;
     border-radius: 50px;
@@ -469,8 +473,9 @@ input[type=checkbox].toggle:checked + label:before {
     gap: 20px;
     font-family: "Alexandria", sans-serif;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 12px;
+    
 }
 
 .bookStatusInfo > div {
@@ -480,19 +485,23 @@ input[type=checkbox].toggle:checked + label:before {
 
 .bookStatusInfo > .bookReadStatusInfo {
     color: 	#8b0000;
+    opacity: 1;
 }
 
 #bookInfo > #withdraw {
     margin: 0;
     margin-bottom: 10px;
-    font-size: 13px;
-    letter-spacing: .95px;
-    padding: 5px;
+    font-size: 12px;
+    letter-spacing: .5px;
+    padding: 4px 10px;
+    padding-top: 6px;
     border: 3px solid #262626;
     border-radius: 4px;
     outline: none;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Courier New', Courier, monospace;
     color: black;
+    font-weight: 600;
+    text-align: center;
 }
 
 /* Below: Storage Alert */
@@ -517,6 +526,7 @@ input[type=checkbox].toggle:checked + label:before {
 .storageAlert div p {
     margin: 0;
     text-align: center;
+    font-weight: 600;
 }
 
 .alert.closeModal {
