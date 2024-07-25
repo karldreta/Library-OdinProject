@@ -1,9 +1,8 @@
-# libraryProject-odin
-Project: Library from JS path of The Odin Project
+# Library: Odin Project
 
 ### [See Live Preview here](https://karldreta.github.io/libraryProject-odin/)
 
-## This is an Odin Project: Library
+## This is an Odin Project: [<u>Library</u>](https://www.theodinproject.com/lessons/node-path-javascript-library)
 
 * For now, I am expected to create a Library App, for this I will demonstrate my understanding of:
 
@@ -59,7 +58,7 @@ Project: Library from JS path of The Odin Project
 
 ## Final Thoughts
 
-While the project was challenging (mostly my fault), it allowed me to create something original. I named it after the Great Library of Alexandria (which was apparently burned down by Julius Caesar) as a testament that though scrolls may burn, still our hunger for learning lives on.
+While the project presented challenges (mostly my fault), it ultimately allowed me to create something truly original. I named it after the **Great Library of Alexandria**, famously destroyed by **Julius Caesar**, to symbolize that even when knowledge is lost, humanity's insatiable thirst for learning and innovation always lives on.
 
 
 ## References:
