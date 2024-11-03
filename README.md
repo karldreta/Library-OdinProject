@@ -1,6 +1,6 @@
 # Library: Odin Project
 
-### [See Live Preview here](https://karldreta.github.io/libraryProject-odin/)
+### [See Live Preview here](https://karldreta.github.io/Library-OdinProject/)
 
 ## This is an Odin Project: [<u>Library</u>](https://www.theodinproject.com/lessons/node-path-javascript-library)
 
